@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Working
+    </ion-title>
+    <ion-buttons slot="end" (click)="Logout()">
+      <ion-button type="Logout">Logout </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-row *ngFor="let day of DaysOfWeek">
+    <ion-col size="3">{{ day.name }}</ion-col>
+    <ion-col size="2">
+      <ion-toggle [(ngModel)]="day.value"></ion-toggle>
+    </ion-col>
+    <ng-container *ngIf="day.value">
+      <ion-col size="3">
+        <p>Start Time</p> 
+        <ion-input type="time" [(ngModel)]="day.starttime"></ion-input>
+      </ion-col>
+      <ion-col size="1">
+        To
+      </ion-col>
+      <ion-col size="3">
+        <p>End Time</p>
+        <ion-input type="time" [(ngModel)]="day.endtime"></ion-input>
+      </ion-col>
+    </ng-container>
+    <ng-container *ngIf="!day.value">
+      <ion-col size="7">Closed</ion-col>
+    </ng-container>
+  </ion-row>
+  <ion-button (click)="SaveDays()">Save</ion-button>
+</ion-content>
+
